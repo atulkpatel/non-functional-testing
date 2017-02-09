@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Zz Performance Test" enabled="true">
+      <stringProp name="TestPlan.comments">First Jmeter script</stringProp>
+      <boolProp name="TestPlan.functional_mode">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="Setup Thread Groups" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stoptestnow</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1430829201000</longProp>
+        <longProp name="ThreadGroup.end_time">1430829201000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="username" elementType="Argument">
+              <stringProp name="Argument.name">username</stringProp>
+              <stringProp name="Argument.value">atul.patel@kuchedww.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">atul.patel@kuchedww.com</stringProp>
+            </elementProp>
+            <elementProp name="password" elementType="Argument">
+              <stringProp name="Argument.name">password</stringProp>
+              <stringProp name="Argument.value">qa</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="results_path" elementType="Argument">
+              <stringProp name="Argument.name">results_path</stringProp>
+              <stringProp name="Argument.value">./testresults</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="projects_username" elementType="Argument">
+              <stringProp name="Argument.name">projects_username</stringProp>
+              <stringProp name="Argument.value">dearrosa_am@zz.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">REMOVE</stringProp>
+            </elementProp>
+            <elementProp name="projects_password" elementType="Argument">
+              <stringProp name="Argument.name">projects_password</stringProp>
+              <stringProp name="Argument.value">dearrosa</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">REMOVE</stringProp>
+            </elementProp>
+            <elementProp name="expected_user" elementType="Argument">
+              <stringProp name="Argument.name">expected_user</stringProp>
+              <stringProp name="Argument.value">atul.patel@kuchedww.com</stringProp>
+              <stringProp name="Argument.desc">TODO : Need to update script to accept this VAR</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="aws_zone" elementType="Argument">
+              <stringProp name="Argument.name">aws_zone</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.desc">aws zone - dev, testing,</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="aws_instance_color" elementType="Argument">
+              <stringProp name="Argument.name">aws_instance_color</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.desc">color of aws instance to test</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="upload_test_image_file" elementType="Argument">
+              <stringProp name="Argument.name">upload_test_image_file</stringProp>
+              <stringProp name="Argument.value">acme-logo.jpg</stringProp>
+              <stringProp name="Argument.desc">Need a spider picture, several diff sizes, formats, Visage_Pure_1.jpg</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="upload_test_mp4_file" elementType="Argument">
+              <stringProp name="Argument.name">upload_test_mp4_file</stringProp>
+              <stringProp name="Argument.value">Visage_1.mp4</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="jmeter_test_home" elementType="Argument">
+              <stringProp name="Argument.name">jmeter_test_home</stringProp>
+              <stringProp name="Argument.value">${__BeanShell(props.get(&quot;jmeter_home&quot;))}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - Test Setup" enabled="true">
+          <stringProp name="TestPlan.comments">Test setup; environment parameter has been set to production or preproduction.</stringProp>
+          <stringProp name="BeanShellSampler.query">import org.apache.jmeter.util.JMeterUtils;
+import java.text.SimpleDateFormat; 
+import java.util.Date; 
+import java.sql.Timestamp;
+
+print(&quot;================================================================================================&quot;);
+env = props.get(&quot;environment&quot;);
+print(&quot;Environment Under Test = &quot; + env);
+// print(env);
+//vars.put(&quot;jmeter_test_home&quot;, props.get(&quot;jmeter_home&quot;));
+print(&quot;jmeter_test_home = &quot; + props.get(&quot;jmeter_home&quot;)); 
+print(&quot;vars.get = &quot; + vars.get(&quot;jmeter_test_home&quot;)); //
+// vars.put(&quot;jmeter_test_home&quot;, props.get(&quot;jmeter_home&quot;));
+
+
+print(&quot;target_site = &quot; + props.get(&quot;target_site&quot;));
+print(&quot;Tester Location = EU | US | AsiaPac&quot;);
+
+print(&quot;activate_standard_test prop = &quot; + props.get(&quot;activate_standard_test&quot;));
+JMeterUtils.setProperty(&quot;activate_standard_test&quot;, &quot;true&quot;);
+// ${__P(&quot;activate_standard_test&quot;, &quot;true&quot;)};
+print(&quot;activate_standard_test prop = &quot; + props.get(&quot;activate_standard_test&quot;));
+
+// Set flag to enable or disable Standard tests
+// (props.get(&quot;activate_standard_test&quot;) == null) || (props.get(&quot;activate_standard_test&quot;).equalsIgnoreCase(&quot;true&quot;)) ? (vars.put(&quot;enable_standard_tests&quot;, &quot;true&quot;)) : (vars.put(&quot;enable_standard_tests&quot;, &quot;false&quot;));
+// print(&quot;Standard tests enabled? &quot; + vars.get(&quot;enable_standard_tests&quot;));
+
+// Set flag to enable/disable Akamai tests
+// (props.get(&quot;activate_akamai_test&quot;) == null) || (props.get(&quot;activate_akamai_test&quot;).equalsIgnoreCase(&quot;true&quot;)) ? (vars.put(&quot;enable_akamai_tests&quot;, &quot;true&quot;)) : (vars.put(&quot;enable_akamai_tests&quot;, &quot;false&quot;));
+// print(&quot;Akamai tests enabled? &quot; + vars.get(&quot;enable_akamai_tests&quot;));
+
+
+JMeterUtils.setProperty(&quot;target_site&quot;, &quot;&quot;);
+
+print(props.get(&quot;target_site&quot;));
+
+if (props.get(&quot;target_site&quot;) == null || props.get(&quot;target_site&quot;) == &quot;&quot;) { 
+	if (env.equalsIgnoreCase(&quot;production&quot;)) { 
+		JMeterUtils.setProperty(&quot;target_site&quot;, &quot;appsupport.zz.tv&quot;);
+		JMeterUtils.setProperty(&quot;standard_metadata_id&quot;, &quot;1446&quot;);
+		JMeterUtils.setProperty(&quot;akamai_target_site&quot;, &quot;akamaipoc.zz.tv&quot;);
+		JMeterUtils.setProperty(&quot;akamai_metadata_id&quot;, &quot;1460&quot;);
+		JMeterUtils.setProperty(&quot;ingest_metadata_field_name&quot;, &quot;XXX_Update_XXX&quot;);
+		JMeterUtils.setProperty(&quot;projects_target_site&quot;, &quot;demo.zz.tv&quot;);
+		print(&quot;Finished setting Production properties.&quot;);
+	}
+	else if (env.equalsIgnoreCase(&quot;preproduction&quot;)){
+		JMeterUtils.setProperty(&quot;target_site&quot;, &quot;appsupport.zz-pp.zz.prv&quot;);		
+		JMeterUtils.setProperty(&quot;projects_target_site&quot;, &quot;appsupport.zz-pp.zz.prv&quot;);
+		// JMeterUtils.setProperty(&quot;standard_metadata_id&quot;, &quot;1948&quot;);
+		// JMeterUtils.setProperty(&quot;ingest_metadata_field_name&quot;, &quot;XXX_Update_XXX&quot;);
+		JMeterUtils.setProperty(&quot;standard_metadata_id&quot;, &quot;1549&quot;);
+		JMeterUtils.setProperty(&quot;ingest_metadata_field_name&quot;, &quot;test_au&quot;);
+		print(&quot;Finished setting PreProduction properties.&quot;);		
+	}
+	else if (env.equalsIgnoreCase(&quot;int&quot;)){
+//		JMeterUtils.setProperty(&quot;target_site&quot;, &quot;zz4-aws-dev.zz.tv&quot;);		
+		JMeterUtils.setProperty(&quot;target_site&quot;, &quot;zz-int.kuchedww.prv&quot;);		
+		JMeterUtils.setProperty(&quot;projects_target_site&quot;, &quot;appsupport.zz-pp.zz.prv&quot;);
+		JMeterUtils.setProperty(&quot;standard_metadata_id&quot;, &quot;44&quot;);
+		JMeterUtils.setProperty(&quot;ingest_metadata_field_name&quot;, &quot;regression_group_text&quot;);	//	
+		print(&quot;Finished setting INT properties.&quot;);		
+	}
+	else if (env.equalsIgnoreCase(&quot;aws_cloud&quot;)){					//							  https://zz4-hg-testing-cobalt.eu-west-1.zz-test.aws.zz.tv
+		     vars.put(&quot;product&quot;, props.get(&quot;PRODUCT&quot;));			// zz4    ................................\____/ \/ \_____/ \____/ \_______/ \___/ \__/     \______/
+		      vars.put(&quot;client&quot;, props.get(&quot;CLIENT&quot;));			// hg (kuched), hsbc?, grays etc? .................|      |      |       |       |     |          |
+		        vars.put(&quot;repo&quot;, props.get(&quot;SERVER_ENV&quot;));		// unstable, testing, staging , stable ....................|      |       |       |     |          |
+		      vars.put(&quot;colour&quot;, props.get(&quot;colour&quot;));			// user defined ..................................................|       |       |     |          |
+		      vars.put(&quot;region&quot;, props.get(&quot;SERVER_REGION&quot;));       // eu-west-1 .............................................................|       |     |          |
+		      vars.put(&quot;prefix&quot;, props.get(&quot;SUBSCRIPTION_PREFIX&quot;));	// zz ................................................... .....................|     |          |    
+		vars.put(&quot;subscription&quot;, props.get(&quot;SERVER_SUBSCRIPTION&quot;)); // test, dev ...........................................................................|          |
+			   vars.put(&quot;site&quot;, props.get(&quot;ZZ_SITE&quot;));		// zz.tv .......................................................................................|
+			   
+vars.put(&quot;target_site_under_test&quot;, vars.get(&quot;product&quot;)+&quot;-&quot;+vars.get(&quot;client&quot;)+&quot;-&quot;+vars.get(&quot;repo&quot;)+&quot;-&quot;+vars.get(&quot;colour&quot;)+&quot;.&quot;+vars.get(&quot;region&quot;)+&quot;.&quot;+vars.get(&quot;prefix&quot;)+&quot;-&quot;+vars.get(&quot;subscription&quot;)+&quot;.aws.&quot;+vars.get(&quot;site&quot;));
+print (&quot;Setup : &quot;  + vars.get(&quot;target_site_under_test&quot;));
+JMeterUtils.setProperty(&quot;target_site&quot;, vars.get(&quot;target_site_under_test&quot;));		 		
+
+		JMeterUtils.setProperty(&quot;projects_target_site&quot;, &quot;zz4-hg-unstable-fuchisa.eu-west-1.zz-dev.aws.zz.tv&quot;);		
+		JMeterUtils.setProperty(&quot;standard_metadata_id&quot;, &quot;2&quot;);
+		JMeterUtils.setProperty(&quot;ingest_metadata_field_name&quot;, &quot;metadata_group_test&quot;);
+		print(&quot;Finished setting AWS_CLOUD properties.&quot;);		
+	}
+}
+
+// ================================================================================
+//  HACK : when submitting a request to search zz, the headers have to be setup differently for aws_cloud compared to int/preprod.
+//         this should be a bug.
+// ================================================================================
+if (env.equalsIgnoreCase(&quot;int&quot;) || env.equalsIgnoreCase(&quot;preproduction&quot;) ) {
+	JMeterUtils.setProperty(&quot;http_header_manager-host&quot;,&quot;:host&quot;); // 
+	JMeterUtils.setProperty(&quot;http_header_manager-method&quot;,&quot;:method&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-path&quot;,&quot;:path&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-scheme&quot;,&quot;:scheme&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-version&quot;,&quot;:version&quot;);
+
+}
+else if (env.equalsIgnoreCase(&quot;aws_cloud&quot;)) {
+	JMeterUtils.setProperty(&quot;http_header_manager-host&quot;   ,&quot;host&quot;); // 
+	JMeterUtils.setProperty(&quot;http_header_manager-method&quot; ,&quot;method&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-path&quot;   ,&quot;path&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-scheme&quot; ,&quot;scheme&quot;);
+	JMeterUtils.setProperty(&quot;http_header_manager-version&quot;,&quot;version&quot;);
+}
+
+if (props.get(&quot;port&quot;) == null) {
+	print (&quot;Setting port&quot;);
+	JMeterUtils.setProperty(&quot;port&quot;, &quot;443&quot;);
+}
+
+if (props.get(&quot;test_duration&quot;) == null) {
+	JMeterUtils.setProperty(&quot;test_duration&quot;, &quot;1&quot;);
+	JmeterUtils.setProperty(&quot;test_duration_seconds&quot;, &quot;1&quot;);
+}
+
+if (props.get(&quot;test_duration_seconds&quot;) == null) { 
+	JMeterUtils.setProperty(&quot;test_duration_seconds&quot;, (Integer.parseInt(props.get(&quot;test_duration&quot;)) *60) + &quot;&quot;);
+
+}
+
+if (props.get(&quot;test_users&quot;) == null) {
+	JMeterUtils.setProperty(&quot;test_users&quot;, &quot;1&quot;);
+}
+
+if (props.get(&quot;search_timeout&quot;) == null) {
+	JMeterUtils.setProperty(&quot;search_timeout&quot;, &quot;180000&quot;);
+}
+
+
+print(props.get(&quot;test_users&quot;) + &quot; user(s) for &quot; + props.get(&quot;test_duration&quot;) + &quot; minutes (&quot; + props.get(&quot;test_duration_seconds&quot;) + &quot;)&quot;);
+
+print(&quot;SOLR searches will timeout after &quot; + props.get(&quot;search_timeout&quot;) + &quot;ms&quot;);
+
+print(props.get(&quot;target_site&quot;) + &quot;:&quot; + props.get(&quot;port&quot;));
+JMeterUtils.setProperty(&quot;login_and_search_threads&quot;, &quot;10&quot;);
+
+print(&quot;output location: &quot; + JMeterUtils.getProperty(&quot;outputdir&quot;));
+
+test_duration_millis = (1000 * 60 * (Integer.parseInt(props.get(&quot;test_duration&quot;))));
+JMeterUtils.setProperty(&quot;test_stop_time&quot;, (System.currentTimeMillis() + test_duration_millis) +&quot;&quot;);
+
+if (props.get(&quot;region_label&quot;) == null) {
+	JMeterUtils.setProperty(&quot;region_label&quot;, &quot;LOCAL&quot;);	
+} 
+print(&quot;================================================================================================&quot;);
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Is test in runnable state" enabled="true">
+          <stringProp name="IfController.condition">${__BeanShell(!(props.get(&quot;environment&quot;).equalsIgnoreCase(&quot;preproduction&quot;)) &amp;&amp; !(props.get(&quot;environment&quot;).equalsIgnoreCase(&quot;production&quot;)) &amp;&amp; !(props.get(&quot;environment&quot;).equalsIgnoreCase(&quot;int&quot;))  &amp;&amp; !(props.get(&quot;environment&quot;).equalsIgnoreCase(&quot;aws_cloud&quot;)))} </stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+          <stringProp name="TestPlan.comments"> Find out if the test execution is targeting production or pre-production</stringProp>
+        </IfController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - Message writer" enabled="true">
+            <stringProp name="BeanShellSampler.query">print (&quot;Test is not in a runnable state.  Exiting now.&quot;);</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Stop test immediately" enabled="true">
+            <intProp name="ActionProcessor.action">2</intProp>
+            <intProp name="ActionProcessor.target">2</intProp>
+            <stringProp name="ActionProcessor.duration"></stringProp>
+          </TestAction>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Zz Ingest Standard - Throughput Load" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">10</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${__BeanShell(props.get(&quot;test_users&quot;))}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">20</stringProp>
+        <longProp name="ThreadGroup.start_time">1460382222000</longProp>
+        <longProp name="ThreadGroup.end_time">1460382222000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+          <boolProp name="clearEachIteration">true</boolProp>
+          <boolProp name="useExpires">false</boolProp>
+        </CacheManager>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${__BeanShell(props.get(&quot;target_site&quot;))}</stringProp>
+          <stringProp name="HTTPSampler.port">${__BeanShell(props.get(&quot;port&quot;))}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="Accept" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Encoding" elementType="Header">
+              <stringProp name="Header.name">Accept-Encoding</stringProp>
+              <stringProp name="Header.value">gzip, deflate</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">en-GB,en;q=0.5</stringProp>
+            </elementProp>
+            <elementProp name="Referer&#x9;https" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">https://${__BeanShell(props.get(&quot;target_site&quot;))}</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="jp@gc - Throughput Shaping Timer 10min" enabled="true">
+          <collectionProp name="load_profile">
+            <collectionProp name="403893843">
+              <stringProp name="471571630">${__BeanShell(props.get(&quot;launch_num_of_threads&quot;))}</stringProp>
+              <stringProp name="785283011">${__BeanShell(props.get(&quot;total_num_of_threads&quot;))}</stringProp>
+              <stringProp name="1629">30</stringProp>
+            </collectionProp>
+            <collectionProp name="1466357427">
+              <stringProp name="785283011">${__BeanShell(props.get(&quot;total_num_of_threads&quot;))}</stringProp>
+              <stringProp name="785283011">${__BeanShell(props.get(&quot;total_num_of_threads&quot;))}</stringProp>
+              <stringProp name="52593">540</stringProp>
+            </collectionProp>
+            <collectionProp name="340489491">
+              <stringProp name="785283011">${__BeanShell(props.get(&quot;total_num_of_threads&quot;))}</stringProp>
+              <stringProp name="48">0</stringProp>
+              <stringProp name="1629">30</stringProp>
+            </collectionProp>
+          </collectionProp>
+        </kg.apc.jmeter.timers.VariableThroughputTimer>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Proceed if the activate_standard_test property is set to true" enabled="true">
+          <stringProp name="IfController.condition">${__BeanShell((props.get(&quot;activate_standard_test&quot;) == null) || (props.get(&quot;activate_standard_test&quot;) == (&quot;true&quot;)))}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - record thread start" enabled="true">
+            <stringProp name="BeanShellSampler.query"> print(ctx.getThread().getThreadName() + &quot;: Starting test run&quot;);</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="Zz test body" enabled="true">
+            <stringProp name="WhileController.condition">${__BeanShell((Long.parseLong(props.get(&quot;test_stop_time&quot;)) &gt; System.currentTimeMillis()))}</stringProp>
+          </WhileController>
+          <hashTree>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">loop_count</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">true</boolProp>
+              <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Ingest Counter" enabled="true">
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">ingest_counter</stringProp>
+              <stringProp name="CounterConfig.format">000</stringProp>
+              <boolProp name="CounterConfig.per_user">false</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - record threadloop" enabled="true">
+              <stringProp name="BeanShellSampler.query">print(ctx.getThread().getThreadName() + &quot;: Thread loop &quot; + vars.get(&quot;loop_count&quot;));</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - Reset logged in state" enabled="true">
+              <stringProp name="BeanShellSampler.query">vars.put(&quot;auth_response_code&quot;, null);
+vars.put(&quot;csrf_token&quot;, null);
+vars.put(&quot;logged_in_user&quot;, null);
+vars.put(&quot;valid_logged_in_user&quot;, null);
+</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Ingest controller" enabled="true"/>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Login Screen" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+                  <collectionProp name="Arguments.arguments"/>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                <stringProp name="HTTPSampler.path">/authentication/login/</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <boolProp name="HTTPSampler.monitor">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get the CSRF token" enabled="true">
+                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                  <stringProp name="RegexExtractor.refname">csrf_token</stringProp>
+                  <stringProp name="RegexExtractor.regex">name=&apos;csrfmiddlewaretoken&apos; value=&apos;(.+?)&apos;</stringProp>
+                  <stringProp name="RegexExtractor.template">$1$</stringProp>
+                  <stringProp name="RegexExtractor.default"></stringProp>
+                  <stringProp name="RegexExtractor.match_number"></stringProp>
+                </RegexExtractor>
+                <hashTree/>
+                <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+                  <boolProp name="ResultCollector.error_logging">true</boolProp>
+                  <objProp>
+                    <name>saveConfig</name>
+                    <value class="SampleSaveConfiguration">
+                      <time>true</time>
+                      <latency>true</latency>
+                      <timestamp>true</timestamp>
+                      <success>true</success>
+                      <label>true</label>
+                      <code>true</code>
+                      <message>true</message>
+                      <threadName>true</threadName>
+                      <dataType>true</dataType>
+                      <encoding>false</encoding>
+                      <assertions>true</assertions>
+                      <subresults>true</subresults>
+                      <responseData>true</responseData>
+                      <samplerData>false</samplerData>
+                      <xml>true</xml>
+                      <fieldNames>false</fieldNames>
+                      <responseHeaders>true</responseHeaders>
+                      <requestHeaders>true</requestHeaders>
+                      <responseDataOnError>false</responseDataOnError>
+                      <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                      <assertionsResultsToSave>0</assertionsResultsToSave>
+                      <bytes>true</bytes>
+                      <threadCounts>true</threadCounts>
+                    </value>
+                  </objProp>
+                  <stringProp name="filename">${__BeanShell(props.get(&quot;outputdir&quot;))}openlogin.xml</stringProp>
+                </ResultCollector>
+                <hashTree/>
+              </hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Login Controller" enabled="true"/>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="username" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                        <stringProp name="Argument.name">username</stringProp>
+                        <stringProp name="Argument.value">${username}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      </elementProp>
+                      <elementProp name="password" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                        <stringProp name="Argument.name">password</stringProp>
+                        <stringProp name="Argument.value">${password}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      </elementProp>
+                      <elementProp name="csrfmiddlewaretoken" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                        <stringProp name="Argument.name">csrfmiddlewaretoken</stringProp>
+                        <stringProp name="Argument.value">${csrf_token}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain"></stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">https</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                  <stringProp name="HTTPSampler.path">/authentication/login/</stringProp>
+                  <stringProp name="HTTPSampler.method">POST</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <boolProp name="HTTPSampler.image_parser">true</boolProp>
+                  <boolProp name="HTTPSampler.monitor">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="TestPlan.comments">${__threadNum}</stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="Accept" elementType="Header">
+                        <stringProp name="Header.name">Accept</stringProp>
+                        <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</stringProp>
+                      </elementProp>
+                      <elementProp name="Referer" elementType="Header">
+                        <stringProp name="Header.name">Referer</stringProp>
+                        <stringProp name="Header.value">https://${__BeanShell(props.get(&quot;target_site&quot;))}/</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept-Encoding" elementType="Header">
+                        <stringProp name="Header.name">Accept-Encoding</stringProp>
+                        <stringProp name="Header.value">gzip, deflate</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">Content-Type</stringProp>
+                        <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                      </elementProp>
+                      <elementProp name="" elementType="Header">
+                        <stringProp name="Header.name">Accept-Language</stringProp>
+                        <stringProp name="Header.value">en-GB,en;q=0.5</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Verify test user has logged in" enabled="true">
+                    <collectionProp name="Asserion.test_strings">
+                      <stringProp name="-1564467605">data-user = ${__BeanShell(vars.get(&quot;expected_user&quot;))}</stringProp>
+                    </collectionProp>
+                    <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                    <boolProp name="Assertion.assume_success">false</boolProp>
+                    <intProp name="Assertion.test_type">16</intProp>
+                    <stringProp name="Scope.variable">logged_in_user</stringProp>
+                  </ResponseAssertion>
+                  <hashTree/>
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get the CSRF token" enabled="true">
+                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                    <stringProp name="RegexExtractor.refname">csrf_token</stringProp>
+                    <stringProp name="RegexExtractor.regex">name=&apos;csrfmiddlewaretoken&apos; value=&apos;(.*?)&apos;</stringProp>
+                    <stringProp name="RegexExtractor.template">$1$</stringProp>
+                    <stringProp name="RegexExtractor.default"></stringProp>
+                    <stringProp name="RegexExtractor.match_number"></stringProp>
+                  </RegexExtractor>
+                  <hashTree/>
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get the Login status code" enabled="true">
+                    <stringProp name="RegexExtractor.useHeaders">code</stringProp>
+                    <stringProp name="RegexExtractor.refname">auth_response_code</stringProp>
+                    <stringProp name="RegexExtractor.regex">([0-9]*)</stringProp>
+                    <stringProp name="RegexExtractor.template">$1$</stringProp>
+                    <stringProp name="RegexExtractor.default"></stringProp>
+                    <stringProp name="RegexExtractor.match_number"></stringProp>
+                  </RegexExtractor>
+                  <hashTree/>
+                  <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Get the logged in user" enabled="true">
+                    <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                    <stringProp name="RegexExtractor.refname">logged_in_user</stringProp>
+                    <stringProp name="RegexExtractor.regex">data-user = (.*)</stringProp>
+                    <stringProp name="RegexExtractor.template">$1$</stringProp>
+                    <stringProp name="RegexExtractor.default"></stringProp>
+                    <stringProp name="RegexExtractor.match_number"></stringProp>
+                    <stringProp name="TestPlan.comments"> </stringProp>
+                  </RegexExtractor>
+                  <hashTree/>
+                </hashTree>
+                <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - Set logged in state" enabled="true">
+                  <stringProp name="BeanShellSampler.query">is_valid_user=(vars.get(&quot;logged_in_user&quot;) != null  &amp;&amp; vars.get(&quot;logged_in_user&quot;).equalsIgnoreCase(vars.get(&quot;expected_user&quot;)) &amp;&amp; vars.get(&quot;auth_response_code&quot;).equalsIgnoreCase(&quot;200&quot;));
+
+vars.put(&quot;valid_logged_in_user&quot;, &quot;&quot;+ is_valid_user);
+
+// print(ctx.getThread().getThreadName() + &quot;: Logged in user is valid? &quot; + is_valid_user + &quot; User: &quot; + vars.get(&quot;logged_in_user&quot;) + &quot; Response: &quot; + vars.get(&quot;auth_response_code&quot;) + &quot; CSRF: &quot; + vars.get(&quot;csrf_token&quot;));</stringProp>
+                  <stringProp name="BeanShellSampler.filename"></stringProp>
+                  <stringProp name="BeanShellSampler.parameters"></stringProp>
+                  <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+                </BeanShellSampler>
+                <hashTree/>
+                <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+                  <boolProp name="ResultCollector.error_logging">false</boolProp>
+                  <objProp>
+                    <name>saveConfig</name>
+                    <value class="SampleSaveConfiguration">
+                      <time>true</time>
+                      <latency>true</latency>
+                      <timestamp>true</timestamp>
+                      <success>true</success>
+                      <label>true</label>
+                      <code>true</code>
+                      <message>true</message>
+                      <threadName>true</threadName>
+                      <dataType>true</dataType>
+                      <encoding>false</encoding>
+                      <assertions>true</assertions>
+                      <subresults>true</subresults>
+                      <responseData>false</responseData>
+                      <samplerData>false</samplerData>
+                      <xml>false</xml>
+                      <fieldNames>false</fieldNames>
+                      <responseHeaders>false</responseHeaders>
+                      <requestHeaders>false</requestHeaders>
+                      <responseDataOnError>false</responseDataOnError>
+                      <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                      <assertionsResultsToSave>0</assertionsResultsToSave>
+                      <bytes>true</bytes>
+                      <threadCounts>true</threadCounts>
+                    </value>
+                  </objProp>
+                  <stringProp name="filename"></stringProp>
+                </ResultCollector>
+                <hashTree/>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Auth Logout" enabled="true">
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="csrfmiddlewaretoken" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">${csrf_token}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      <stringProp name="Argument.name">csrfmiddlewaretoken</stringProp>
+                      <stringProp name="Argument.desc">true</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+                <stringProp name="HTTPSampler.domain"></stringProp>
+                <stringProp name="HTTPSampler.port"></stringProp>
+                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                <stringProp name="HTTPSampler.path">/authentication/logout/</stringProp>
+                <stringProp name="HTTPSampler.method">GET</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                <boolProp name="HTTPSampler.monitor">false</boolProp>
+                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="49586">200</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">16</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+                <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+                  <boolProp name="ResultCollector.error_logging">false</boolProp>
+                  <objProp>
+                    <name>saveConfig</name>
+                    <value class="SampleSaveConfiguration">
+                      <time>true</time>
+                      <latency>true</latency>
+                      <timestamp>true</timestamp>
+                      <success>true</success>
+                      <label>true</label>
+                      <code>true</code>
+                      <message>true</message>
+                      <threadName>true</threadName>
+                      <dataType>true</dataType>
+                      <encoding>false</encoding>
+                      <assertions>true</assertions>
+                      <subresults>true</subresults>
+                      <responseData>false</responseData>
+                      <samplerData>false</samplerData>
+                      <xml>false</xml>
+                      <fieldNames>false</fieldNames>
+                      <responseHeaders>false</responseHeaders>
+                      <requestHeaders>false</requestHeaders>
+                      <responseDataOnError>false</responseDataOnError>
+                      <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                      <assertionsResultsToSave>0</assertionsResultsToSave>
+                      <bytes>true</bytes>
+                      <threadCounts>true</threadCounts>
+                    </value>
+                  </objProp>
+                  <stringProp name="filename"></stringProp>
+                  <boolProp name="ResultCollector.success_only_logging">true</boolProp>
+                </ResultCollector>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>false</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <threadCounts>true</threadCounts>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="TestAssist - Thread Final" enabled="true">
+          <stringProp name="BeanShellSampler.query">print(ctx.getThread().getThreadName() + &quot;: FINISHED (&quot; + vars.get(&quot;loop_count&quot;) + &quot; loops)&quot;);</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>false</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename">${__BeanShell(props.get(&quot;outputdir&quot;))}${__BeanShell(props.get(&quot;test_users&quot;))}-summary_report.csv</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Combined errors" enabled="true">
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename">${__BeanShell(props.get(&quot;outputdir&quot;))}${__BeanShell(props.get(&quot;test_users&quot;))}-errors.csv</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Combined report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>true</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename">${__BeanShell(props.get(&quot;outputdir&quot;))}${__BeanShell(props.get(&quot;test_users&quot;))}-output.csv</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

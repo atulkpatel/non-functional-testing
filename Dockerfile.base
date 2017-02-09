@@ -1,0 +1,63 @@
+# A image with apache-jmeter-2.13
+
+FROM rdpanek/base
+MAINTAINER Atul Patel <atulkpatel 4t yahoo dot com>
+
+# env
+ENV JMETER_VERSION 2.13
+ENV PLUGINS_VERSION 1.3.1
+ENV JMETER_PATH /srv/var/jmeter
+ENV PLUGINS_PATH $JMETER_PATH/plugins
+ENV NON_FUNC /srv/var/jmeter/non-functional-tests
+ENV JMETER_HOME=$NON_FUNC
+ENV JMETER_BIN=$JMETER_PATH/apache-jmeter-$JMETER_VERSION/bin
+
+
+# Automagically accept Oracle's license (for oracle-java8-installer)
+RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+# Install Jmeter
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get update
+RUN apt-get install -y --force-yes oracle-java8-installer
+
+RUN mkdir -p $JMETER_PATH && cd $JMETER_PATH && \
+    wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz && \
+    tar -zxf apache-jmeter-$JMETER_VERSION.tgz && \
+    rm apache-jmeter-$JMETER_VERSION.tgz
+
+# Install dependencies
+# - JMeterPlugins-Standard 1.2.0
+# - JMeterPlugins-Extras 1.2.0
+# - JMeterPlugins-ExtrasLibs 1.2.0
+RUN apt-get install -y --force-yes unzip htop bmon locate gawk tree
+
+# Install JMeterPlugins-ExtrasLibs
+RUN mkdir -p $PLUGINS_PATH && \
+    # wget -q http://jmeter-plugins.org/downloads/old/JMeterPlugins-ExtrasLibs-$PLUGINS_VERSION.zip && \
+    # unzip -o -d $PLUGINS_PATH JMeterPlugins-ExtrasLibs-$PLUGINS_VERSION.zip && \
+    # wget -q http://jmeter-plugins.org/downloads/file/JMeterPlugins-Extras-$PLUGINS_VERSION.zip && \
+    # unzip -o -d $PLUGINS_PATH JMeterPlugins-Extras-$PLUGINS_VERSION.zip && \
+    wget -q http://jmeter-plugins.org/downloads/file/JMeterPlugins-Standard-$PLUGINS_VERSION.zip && \
+    unzip -o -d $PLUGINS_PATH JMeterPlugins-Standard-$PLUGINS_VERSION.zip 
+
+RUN rm JMeterPlugins-Standard-$PLUGINS_VERSION.zip
+
+# Copy plugins to jmeter enviroment
+# RUN cp $PLUGINS_PATH/lib/*.jar $JMETER_PATH/apache-jmeter-$JMETER_VERSION/lib/
+RUN cp $PLUGINS_PATH/lib/ext/*.jar $JMETER_PATH/apache-jmeter-$JMETER_VERSION/lib/ext/
+
+# Copy user.properties
+# ADD user.properties $JMETER_PATH/apache-jmeter-$JMETER_VERSION/bin/
+
+# RUN mkdir -p $NON_FUNC/logs
+# RUN mkdir -p $NON_FUNC/scripts
+# RUN mkdir -p $NON_FUNC/test-cases/sample-upload-files
+# 
+# ADD scripts/perf_jmeter.sh $NON_FUNC/scripts/
+# ADD scripts/jtlmin.sh $NON_FUNC/scripts/
+# ADD test-cases/perf_login.jmx $NON_FUNC/test-cases/
+# ADD test-cases/sample-upload-files/testfile.jpg $NON_FUNC/test-cases/sample-upload-files/
+# ADD docker-entrypoint.sh /
+# 
+# ENTRYPOINT ["/docker-entrypoint.sh"]
